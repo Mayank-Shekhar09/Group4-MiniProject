@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXBL
 {
-    class Student
+    class Student : TrainingBatchManagement
     {
         private string PSNo;
         private string emailId;

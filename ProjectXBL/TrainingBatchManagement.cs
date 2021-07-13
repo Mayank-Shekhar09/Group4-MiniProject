@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXBL
 {
-    class TrainingBatchManagement
+    class TrainingBatchManagement : DeliveryModelMapping
     {
         string batchName;
         int participants;
