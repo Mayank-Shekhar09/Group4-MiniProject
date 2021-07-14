@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXBL
 {
-    class CourseManagement
+    public class Courses
     {
         private string courseId;
         private string courseTitle;

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProjectXBL
 {
-    class FacultyManagement : CourseManagement
+    public class Faculties
     {
-        private string PSNo;
+        private int PSNo;
         private string name;
         private string emailId;
-        public string PSNO { get; set; }
+        public int PSNO { get; set; }
         public string Name { get; set; }
         public string EmailId { get; set; }
     }

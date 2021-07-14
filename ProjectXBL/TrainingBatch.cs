@@ -6,7 +6,22 @@ using System.Threading.Tasks;
 
 namespace ProjectXBL
 {
-    class TrainingBatchManagement : DeliveryModelMapping
+    public enum Month
+    {
+        January = 1,
+        February,
+        March,
+        April,
+        May,
+        June,
+        July,
+        August,
+        September,
+        October,
+        November,
+        December
+    };
+    public class TrainingBatch
     {
         string batchName;
         int participants;

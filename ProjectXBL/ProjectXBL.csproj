@@ -41,13 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CourseManagement.cs" />
-    <Compile Include="DeliveryModelMapping.cs" />
-    <Compile Include="FacultyManagement.cs" />
+    <Compile Include="Courses.cs" />
+    <Compile Include="DeliveryModel.cs" />
+    <Compile Include="Faculties.cs" />
     <Compile Include="Grader.cs" />
+    <Compile Include="Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Student.cs" />
-    <Compile Include="TrainingBatchManagement.cs" />
+    <Compile Include="Participants.cs" />
+    <Compile Include="TrainingBatch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProjectXBL
 {
-    public class Grader
+    public class DeliveryModel
     {
-        private float totalScore;
-        private string areaOfImprovement;
-        private string areaOfExcellence;
+        string modelName;
+        string[] coursesName;
+        
     }
 }

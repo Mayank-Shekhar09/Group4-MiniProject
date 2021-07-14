@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProjectXBL
 {
-    class DeliveryModelMapping : FacultyManagement
+    public class Login
     {
+        private string Id;
+        private string password;
 
     }
 }
