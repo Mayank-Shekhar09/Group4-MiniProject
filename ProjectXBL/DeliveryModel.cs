@@ -11,8 +11,8 @@ namespace ProjectXBL
         string modelName;
         int n, j = 1;
         string courseID;
-        Excel obj = new Excel(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Book.xlsx", 1);
-        Excel writeobj = new Excel(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Models.xlsx", 1);
+        Excel obj = new Excel(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Modify.xlsx", 1);
+        Excel writeobj = new Excel(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Models2.xlsx", 1);
         public void createmodel()
         {
             Console.WriteLine("Enter Model Name:");
@@ -22,13 +22,14 @@ namespace ProjectXBL
             for (int i = 1; i <= n; i++)
             {
                 Console.WriteLine("Type a courseID you want to add in model");
-                courseID = Console.ReadLine();
+                courseID = Console.ReadLine().ToUpper();
+                
                 if (obj.ReadCourseId(courseID))
                 {
                     if (writeobj.WriteModelName(modelName) && writeobj.WriteCourseId(courseID))
                     {
                         writeobj.save();
-                        writeobj.saveas(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Models.xlsx");
+                        writeobj.saveas(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Models2.xlsx");
                         Console.WriteLine("Course Added Successfully");
                     }
                     else

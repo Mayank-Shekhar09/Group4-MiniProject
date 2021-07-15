@@ -10,80 +10,100 @@ namespace ProjectXBL
     {
         string[] facultyMembers = new string[50];
         string cid, faculty, other;
-        int ch, hrs;
+        bool chr;
+        int hrs, ch;
         int edit = 0;
-        ExcelM obj = new ExcelM(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Book.xlsx", 1);
+        ExcelM obj = new ExcelM(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Modify.xlsx", 1);
         public void AddCourseInput()
         {
-            AddCourse add = new AddCourse();
-
-            Console.WriteLine("Choose your learning process: \nIL : Instructor learning  \nEL :E-learning");
-            string learning = Console.ReadLine().ToUpper();
-            if (learning != "EL" && learning != "IL")
-                throw new ArgumentException();
-            Console.WriteLine("Choose your track: \nSW: Software Engineering \nEM:Embedded Engineeering \nME: Mechanical Engineering \nPT: Plant Engineering");
-            string track = Console.ReadLine().ToUpper();
-            if (track != "SW" && track != "EM" && track != "ME" && track != "PT")
-                throw new ArgumentException();
-            Console.WriteLine("Outcome: (T/C): ");
-            char outcome = char.ToUpper(Console.ReadLine()[0]);
-            if (outcome != 'T' && outcome != 'C')
-                throw new ArgumentException();
-            Console.WriteLine("Choose category : \nI : Internal  \tEL :External ");
-            char scope = char.ToUpper(Console.ReadLine()[0]);
-            if (scope != 'I' && scope != 'E')
-                throw new ArgumentException();
-
-            Console.WriteLine("\nT : Technical  \tD :Domain \tP : Process");
-            char type = char.ToUpper(Console.ReadLine()[0]);
-            if (type != 'T' && type != 'D' && type != 'P')
-                throw new ArgumentException();
-
-            Console.WriteLine("\n Level: \tL1: Awareness \tL2: Supervised Practitioner \tL3: Practitioner");
-            string level = Console.ReadLine().ToUpper();
-            if (level != "L1" && level != "L2" && level != "L3")
-                throw new ArgumentException();
-            Console.WriteLine("\nEnter Course Title: ");
-            string courseTitle = Console.ReadLine(); //check if course title is unique to be done.
-            Console.WriteLine("\nEnter Course Duration: ");
-            float courseDuration = float.Parse(Console.ReadLine());
-            if (courseDuration.GetType() != typeof(float))
-                throw new ArgumentException();
-            Console.WriteLine("Course Owner: ");
-            string courseOwner = Console.ReadLine();
-            if (!add.CheckFaculty(courseOwner))
-                throw new ArgumentException();
-            Console.WriteLine("Number of faculties for the course: ");
-            int facultyTotal = Convert.ToInt32(Console.ReadLine());
-
-            if (facultyTotal.GetType() != typeof(int))
-                throw new ArgumentException();
-            for (int loop = 0; loop < facultyTotal; loop++)
+            try
             {
-                Console.WriteLine($"Enter faculty {loop + 1}: ");
-                string member = Console.ReadLine();
-                if (add.CheckFaculty(member))
-                    facultyMembers[loop] = member;
-                else
+                while (chr == true)
                 {
-                    Console.WriteLine("Invalid faculty");
-                    loop--;
+                    AddCourse add = new AddCourse();
+
+                    Console.WriteLine("Choose your learning process: \nIL : Instructor learning  \nEL :E-learning");
+                    string learning = Console.ReadLine().ToUpper();
+                    if (learning != "EL" && learning != "IL")
+                        throw new ArgumentException();
+                    Console.WriteLine("Choose your track: \nSW: Software Engineering \nEM:Embedded Engineeering \nME: Mechanical Engineering \nPT: Plant Engineering");
+                    string track = Console.ReadLine().ToUpper();
+                    if (track != "SW" && track != "EM" && track != "ME" && track != "PT")
+                        throw new ArgumentException();
+                    Console.WriteLine("Outcome: (T/C): ");
+                    char outcome = char.ToUpper(Console.ReadLine()[0]);
+                    if (outcome != 'T' && outcome != 'C')
+                        throw new ArgumentException();
+                    Console.WriteLine("Choose category : \nI : Internal  \tEL :External ");
+                    char scope = char.ToUpper(Console.ReadLine()[0]);
+                    if (scope != 'I' && scope != 'E')
+                        throw new ArgumentException();
+
+                    Console.WriteLine("\nT : Technical  \tD :Domain \tP : Process");
+                    char type = char.ToUpper(Console.ReadLine()[0]);
+                    if (type != 'T' && type != 'D' && type != 'P')
+                        throw new ArgumentException();
+
+                    Console.WriteLine("\n Level: \tL1: Awareness \tL2: Supervised Practitioner \tL3: Practitioner");
+                    string level = Console.ReadLine().ToUpper();
+                    if (level != "L1" && level != "L2" && level != "L3")
+                        throw new ArgumentException();
+                    Console.WriteLine("\nEnter Course Title: ");
+                    string courseTitle = Console.ReadLine(); //check if course title is unique to be done.
+                    Console.WriteLine("\nEnter Course Duration: ");
+                    float courseDuration = float.Parse(Console.ReadLine());
+                    if (courseDuration.GetType() != typeof(float))
+                        throw new ArgumentException();
+                    Console.WriteLine("Course Owner: ");
+                    string courseOwner = Console.ReadLine();
+                    if (!add.CheckFaculty(courseOwner))
+                        throw new ArgumentException();
+                    Console.WriteLine("Number of faculties for the course: ");
+                    int facultyTotal = Convert.ToInt32(Console.ReadLine());
+
+                    if (facultyTotal.GetType() != typeof(int))
+                        throw new ArgumentException();
+                    for (int loop = 0; loop < facultyTotal; loop++)
+                    {
+                        Console.WriteLine($"Enter faculty {loop + 1}: ");
+                        string member = Console.ReadLine();
+                        if (add.CheckFaculty(member))
+                            facultyMembers[loop] = member;
+                        else
+                        {
+                            Console.WriteLine("Invalid faculty");
+                            loop--;
+                        }
+
+                    }
+                    Console.WriteLine("Choose Mode: \t1 :Hands on \t2 :MCQ  \t3 :No Assessment Mode");
+                    Mode mode = (Mode)(Convert.ToInt32(Console.ReadLine()));
+                    Console.WriteLine("Address of the curriculum: ");
+                    string address = '@' + Console.ReadLine();
+                    AddCourse addCourse = new AddCourse(learning, track, outcome, type, scope, courseTitle, courseDuration, courseOwner, facultyMembers, mode, address);
+                    addCourse.facultyTotal = facultyTotal;
+                    addCourse.SetLevel(level);
+                    Task.Delay(1000);
+                    addCourse.ToFile();
+
+                    Console.WriteLine(addCourse.CourseId);
+                    Console.WriteLine(addCourse.Mode.ToString());
                 }
-
+                Console.WriteLine("Do you want to add another course(y/n): ");
+                string n = Console.ReadLine();
+                if (n == "y")
+                    chr = true;
+                else if (n == "n")
+                    chr = false;
+                else
+                    throw new ArgumentException();
             }
-            Console.WriteLine("Choose Mode: \t1 :Hands on \t2 :MCQ  \t3 :No Assessment Mode");
-            Mode mode = (Mode)(Convert.ToInt32(Console.ReadLine()));
-            Console.WriteLine("Address of the curriculum: ");
-            string address = '@' + Console.ReadLine();
-            AddCourse addCourse = new AddCourse(learning, track, outcome, type, scope, courseTitle, courseDuration, courseOwner, facultyMembers, mode, address);
-            addCourse.facultyTotal = facultyTotal;
-            addCourse.SetLevel(level);
-            Task.Delay(1000);
-            addCourse.ToFile();
-
-            Console.WriteLine(addCourse.CourseId);
-            Console.WriteLine(addCourse.Mode.ToString());
+            catch (ArgumentException e)
+            {
+                Console.WriteLine("Invalid Input");
+            }
         }
+            
 
         public void ModifyCourseInput()
         {

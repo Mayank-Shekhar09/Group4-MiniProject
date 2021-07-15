@@ -18,7 +18,7 @@ namespace ProjectXBL
             if (psno.GetType() != typeof(int))
                 throw new ArgumentException();
             Console.WriteLine("Enter EmailId");
-            emailId = Console.ReadLine();
+            emailId = Console.ReadLine().ToUpper();
             if ((emailId == null) || (!emailId.Contains('@')) || (!emailId.Contains(".com")))
                 throw new ArgumentException();
             else
@@ -32,7 +32,7 @@ namespace ProjectXBL
                 }
             }
             Console.WriteLine("Enter Name");
-            name = Console.ReadLine();
+            name = Console.ReadLine().ToUpper();
             if (name == null)
                 throw new ArgumentException();
             else

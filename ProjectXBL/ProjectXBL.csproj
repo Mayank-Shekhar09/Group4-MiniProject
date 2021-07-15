@@ -50,8 +50,9 @@
     <Compile Include="ExcelOp.cs" />
     <Compile Include="Faculties.cs" />
     <Compile Include="Grader.cs" />
+    <Compile Include="Graderf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrainingBatch.cs" />
+    <Compile Include="TraineeBatch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
