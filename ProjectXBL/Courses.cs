@@ -9,6 +9,10 @@ namespace ProjectXBL
     public class Courses
     {
         string[] facultyMembers = new string[50];
+        string cid, faculty, other;
+        int ch, hrs;
+        int edit = 0;
+        ExcelM obj = new ExcelM(@"C:\Users\Sanya\source\repos\Solution5\TESTS.xlsx", 1);
         public void AddCourseInput()
         {
             AddCourse add = new AddCourse();
@@ -83,5 +87,101 @@ namespace ProjectXBL
 
         public void ModifyCourseInput()
         {
+            try
+            {
+                Console.WriteLine("Enter the CourseID of course you want to modify: ");
+                cid = Console.ReadLine().ToUpper();
+                if (cid == "")
+                    throw new ArgumentException();
+                while (edit != 1)
+                {
+                    Console.WriteLine("\nFor Modifying Duration, Press 1:");
+                    Console.WriteLine("For Modifying Primary Faculty, Press 2:");
+                    Console.WriteLine("For Displaying List of Other Faculties: Press 3");
+                    Console.WriteLine("To Exit From here, Press 4");
+                    ch = Convert.ToInt32(Console.ReadLine());
+                    if (ch.GetType() != typeof(int))
+                        throw new ArgumentException();
+                    switch (ch)
+                    {
+                        case 1:
+                            {
+                                Console.WriteLine("\nEnter the number of hours you want your course to have:");
+                                hrs = Convert.ToInt32(Console.ReadLine());
+                                obj.ModifyDuration(cid, hrs);
+                                obj.Save();
+                                //obj.Close();
+                                break;
+                            }
+                        case 2:
+                            {
+                                Console.WriteLine("\nEnter the name of faculty you want your course to have:");
+                                faculty = Console.ReadLine();
+                                if (faculty == null)
+                                    throw new ArgumentException();
+                                if (faculty != null)
+                                {
+                                    foreach (char lt in faculty)
+                                    {
+                                        if ((lt >= 'a' && lt <= 'z') || (lt >= 'A' && lt <= 'Z'))
+                                            continue;
+                                        else
+                                            throw new ArgumentException();
+                                    }
+                                }
+                                obj.ModifyPrimaryFaculty(cid, faculty);
+                                obj.Save();
+                                //obj.Close();
+                                break;
+                            }
+                        case 3:
+                            {
+                                Console.WriteLine("\nEnter the list of faculties you want your course to have and separate them with the help of a comma:");
+                                other = Console.ReadLine();
+                                if (other == null)
+                                    throw new ArgumentException();
+                                if (other != null)
+                                {
+                                    foreach (char lt in other)
+                                    {
+                                        if ((lt >= 'a' && lt <= 'z') || (lt >= 'A' && lt <= 'Z') || (lt == ','))
+                                            continue;
+                                        else
+                                            throw new ArgumentException();
+                                    }
+                                }
+                                obj.ModifyOtherFaculty(cid, other);
+                                obj.Save();
+                                //obj.Close();
+                                break;
+                            }
+
+                        case 4:
+                            {
+                                Console.WriteLine("\nOops!! You have exited the modification module:");
+                                edit = 1;
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("\nIncorrect!!!.Enter a Valid Option");
+                                Console.WriteLine("Please Enter Again!");
+                                break;
+                            }
+                    }
+                }
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("\nInvalid!");
+            }
+            finally
+            {
+                obj.Close();
+                Console.WriteLine("\nByebye!");
+                Console.ReadLine();
+                System.Environment.Exit(1000);
+
+            }
         }
 }
