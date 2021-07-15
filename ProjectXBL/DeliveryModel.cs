@@ -9,7 +9,45 @@ namespace ProjectXBL
     public class DeliveryModel
     {
         string modelName;
-        string[] coursesName;
-        
+        int n, j = 1;
+        string courseID;
+        Excel obj = new Excel(@"E:\Genesis_C#\SampleLogin\SampleBL\TESTS.xlsx", 1);
+        Excel writeobj = new Excel(@"E:\Genesis_C#\SampleLogin\SampleBL\Models.xlsx", 1);
+        public void createmodel()
+        {
+            Console.WriteLine("Enter Model Name:");
+            modelName = Console.ReadLine();
+            Console.WriteLine("How many course you want to add");
+            n = Convert.ToInt32(Console.ReadLine());
+            for (int i = 1; i <= n; i++)
+            {
+                Console.WriteLine("Type a courseID you want to add in model");
+                courseID = Console.ReadLine();
+                if (obj.ReadCourseId(courseID))
+                {
+                    if (writeobj.WriteModelName(modelName) && writeobj.WriteCourseId(courseID))
+                    {
+                        writeobj.save();
+                        writeobj.saveas(@"E:\Genesis_C#\SampleLogin\SampleBL\Models.xlsx");
+                        Console.WriteLine("Course Added Successfully");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Operation");
+                    }
+
+
+
+                }
+                else
+                {
+                    Console.WriteLine("The course you want to add is not in Course List");
+                }
+
+
+            }
+        }
+
+
     }
 }
