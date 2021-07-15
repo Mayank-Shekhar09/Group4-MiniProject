@@ -8,7 +8,7 @@ using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace ProjectXBL
 {
-    class ExcelM
+    public class ExcelM
     {
         string path = "";
         _Application excel = new _Excel.Application();

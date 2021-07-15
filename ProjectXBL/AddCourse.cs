@@ -8,7 +8,7 @@ using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace ProjectXBL
 {
-    public enum Mode { HandsOn=1 ,MCQ , NoAssessment};
+    public enum Mode { HandsOn = 1, MCQ, NoAssessment };
 
     public class AddCourse
     {
@@ -23,7 +23,7 @@ namespace ProjectXBL
         public int facultyTotal;
         private string address;
 
-        ExcelOp facultyExcel = new ExcelOp(@"C:\Users\ROHINI NAIR\source\repos\Faculty.xlsx", 1);
+        ExcelOp facultyExcel = new ExcelOp(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Book1.xlsx", 1);
 
         public string CourseId
         {
@@ -38,12 +38,14 @@ namespace ProjectXBL
         }
 
         public float CourseDuration
-        { get { return courseDuration; }
+        {
+            get { return courseDuration; }
             set { courseDuration = value; }
         }
 
         public string CourseOwner
-        { get { return courseOwner; }
+        {
+            get { return courseOwner; }
             set { courseOwner = value; }
         }
 
@@ -71,7 +73,7 @@ namespace ProjectXBL
 
         public AddCourse() { }
 
-        public AddCourse(string learning,string track,char outcome,char type,char scope,string courseTitle,float courseDuration,string courseOwner,string[] facultyMembers,Mode mode,string address) 
+        public AddCourse(string learning, string track, char outcome, char type, char scope, string courseTitle, float courseDuration, string courseOwner, string[] facultyMembers, Mode mode, string address)
         {
             courseId = learning + track + outcome + type + scope;
             this.courseTitle = courseTitle;
@@ -95,14 +97,14 @@ namespace ProjectXBL
             else if (level == "L2")
             {
                 courseId += L2;
-                if(L2!=500)
-                L2++;
+                if (L2 != 500)
+                    L2++;
             }
             else if (level == "L3")
             {
                 courseId += L3;
-                if(L3!=800)
-                L3++;
+                if (L3 != 800)
+                    L3++;
             }
             else
                 throw new ArgumentException("Invalid Input");
@@ -116,19 +118,19 @@ namespace ProjectXBL
             return false;
         }
 
-         
+
 
         public bool ToFile()
         {
             int flag = 0;
-            ExcelOp excel = new ExcelOp(@"C:\Users\ROHINI NAIR\source\repos\Book.xlsx", 1);
-            
+            ExcelOp excel = new ExcelOp(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Book1.xlsx", 1);
+
             if (excel.ReadcourseId(courseId))
             {
                 Console.WriteLine("loop entered");
-                char num=courseId[7];
+                char num = courseId[7];
                 Console.WriteLine(num);
-                int level = num-48;
+                int level = num - 48;
                 Console.WriteLine(level);
                 if (level >= 1 && level < 5)
                 {
@@ -162,12 +164,12 @@ namespace ProjectXBL
                 else
                 {
                     //throw new ArgumentException("Invalid: ");
-                    flag=0;
+                    flag = 0;
                 }
             }
 
             if (excel.Setcourse(courseId, courseTitle, courseDuration, courseOwner) &&
-            excel.setfaculty(facultyMembers,facultyTotal) &&
+            excel.setfaculty(facultyMembers, facultyTotal) &&
             excel.setMode(mode) &&
             excel.setAddress(address.Substring(1)))
                 flag = 1;
@@ -180,7 +182,7 @@ namespace ProjectXBL
             else
                 return false;
 
-            
+
         }
 
 

@@ -8,14 +8,13 @@ using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace ProjectXBL
 {
-    class ExcelOp
+    public class ExcelOp
     {
-
         string path = "";
         _Application excel = new _Excel.Application();
         Workbook wb;
         Worksheet ws;
-        
+
 
         public ExcelOp(string path, int Sheet)
         {
@@ -50,7 +49,7 @@ namespace ProjectXBL
         {
 
             int j = 3;
-            for (int i = 1; i < 100; i++)
+            for (int i = 2; i < 100; i++)
             {
 
                 if (ws.Cells[i, j].Value2 == null)
@@ -69,7 +68,7 @@ namespace ProjectXBL
         }
 
 
-        public bool Setcourse(string courseId,string courseTitle,float courseDuration,string courseOwner)
+        public bool Setcourse(string courseId, string courseTitle, float courseDuration, string courseOwner)
         {
             int flag = 0;
             string[] courseInfo = new string[] { courseId, courseTitle, courseDuration.ToString(), courseOwner };
@@ -94,13 +93,13 @@ namespace ProjectXBL
                 return false;
         }
 
-        
 
-        public bool setfaculty(string[] s,int facultyTotal)
+
+        public bool setfaculty(string[] s, int facultyTotal)
         {
-            string input="";
+            string input = "";
             int j = 5;
-            for (int index = 0; index < facultyTotal-1; index++)
+            for (int index = 0; index < facultyTotal - 1; index++)
                 input += s[index] + ',';
             input += s[facultyTotal - 1];
             Console.WriteLine(input);
@@ -165,11 +164,7 @@ namespace ProjectXBL
             excel.Workbooks.Close();
             excel.Quit();
             Task.Delay(1000);
-           // wb.Close();
+            // wb.Close();
         }
     }
 }
-
-
-    
-

@@ -12,7 +12,7 @@ namespace ProjectXBL
         string cid, faculty, other;
         int ch, hrs;
         int edit = 0;
-        ExcelM obj = new ExcelM(@"C:\Users\Sanya\source\repos\Solution5\TESTS.xlsx", 1);
+        ExcelM obj = new ExcelM(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Book.xlsx", 1);
         public void AddCourseInput()
         {
             AddCourse add = new AddCourse();
@@ -180,8 +180,9 @@ namespace ProjectXBL
                 obj.Close();
                 Console.WriteLine("\nByebye!");
                 Console.ReadLine();
-                System.Environment.Exit(1000);
+                
 
             }
         }
+    }
 }

@@ -11,8 +11,8 @@ namespace ProjectXBL
         string modelName;
         int n, j = 1;
         string courseID;
-        Excel obj = new Excel(@"E:\Genesis_C#\SampleLogin\SampleBL\TESTS.xlsx", 1);
-        Excel writeobj = new Excel(@"E:\Genesis_C#\SampleLogin\SampleBL\Models.xlsx", 1);
+        Excel obj = new Excel(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Book.xlsx", 1);
+        Excel writeobj = new Excel(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Models.xlsx", 1);
         public void createmodel()
         {
             Console.WriteLine("Enter Model Name:");
@@ -28,7 +28,7 @@ namespace ProjectXBL
                     if (writeobj.WriteModelName(modelName) && writeobj.WriteCourseId(courseID))
                     {
                         writeobj.save();
-                        writeobj.saveas(@"E:\Genesis_C#\SampleLogin\SampleBL\Models.xlsx");
+                        writeobj.saveas(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Models.xlsx");
                         Console.WriteLine("Course Added Successfully");
                     }
                     else

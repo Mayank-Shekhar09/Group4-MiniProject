@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using _Excel = Microsoft.Office.Interop.Excel;
 
-
 namespace ProjectXBL
 {
     public class Excel

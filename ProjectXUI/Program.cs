@@ -11,7 +11,10 @@ namespace ProjectXUI
     {
         static void Main(string[] args)
         {
-            Excel excel = new Excel(@"E:\Genesis_C#\SampleLogin\SampleLoginUI\Login.xlsx", 1);
+            DeliveryModel deliveryModel = new DeliveryModel();
+            Courses courses = new Courses();
+            Faculties faculties = new Faculties();
+            Excel excel = new Excel(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Login.xlsx", 1);
             string user, pass;
             Console.WriteLine("Choose option.\n1.Sign Up\n2. Login");
             int option = Convert.ToInt32(Console.ReadLine());
@@ -45,7 +48,10 @@ namespace ProjectXUI
                     if (flag1 && flag2)
                     {
                         Console.WriteLine("Login Successful!!!");
-                        
+                        //faculties.AddFaculty();
+                        //deliveryModel.createmodel();
+                        //courses.AddCourseInput();
+                        courses.ModifyCourseInput();
 
                     }
 
@@ -55,7 +61,7 @@ namespace ProjectXUI
                         Console.WriteLine("Invalid Credentials");
                     excel.save();
 
-                    excel.saveas(@"E:\Genesis_C#\SampleLogin\SampleLoginUI\Login.xlsx");
+                    excel.saveas(@"C:\Users\mmsha\OneDrive\Desktop\Group4-MiniProject\Resources\Login.xlsx");
                     excel.close();
 
 
