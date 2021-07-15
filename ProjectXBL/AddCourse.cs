@@ -89,22 +89,17 @@ namespace ProjectXBL
         {
             if (level == "L1")
             {
-                Console.WriteLine("set level loop");
                 courseId += L1;
-                Console.WriteLine($"set level loop {courseId}");
-                Console.WriteLine($"set level loop new L1: {L1}");
             }
             else if (level == "L2")
             {
                 courseId += L2;
-                if (L2 != 500)
-                    L2++;
+             
             }
             else if (level == "L3")
             {
                 courseId += L3;
-                if (L3 != 800)
-                    L3++;
+             
             }
             else
                 throw new ArgumentException("Invalid Input");
@@ -127,7 +122,7 @@ namespace ProjectXBL
 
             if (excel.ReadcourseId(courseId))
             {
-                Console.WriteLine("loop entered");
+               
                 char num = courseId[7];
                 Console.WriteLine(num);
                 int level = num - 48;
@@ -136,11 +131,10 @@ namespace ProjectXBL
                 {
                     while (excel.ReadcourseId(courseId))
                     {
-                        Console.WriteLine("L1 loop entered");
-                        Console.WriteLine($"Current value: {L1}");
+                        
                         L1++;
                         courseId = courseId.Substring(0, 7) + L1.ToString();
-                        Console.WriteLine($"CourseId: {courseId}");
+                        
                     }
                 }
 
